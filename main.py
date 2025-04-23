@@ -9,11 +9,7 @@ def gestion_paquetes(captura_paquetes):
         for capas in paquetes:
             contador_capas = contador_capas + 1
             print(f"Esta es la capa {contador_capas}:")
-            contador_ = 0
-            for _ in capas:
-                contador_ = contador_ + 1
-                print(f"Este es el _ {contador_}:")
-                print(_)
+            print(capas)
 
 def obtencion_paquetes(tarjeta_red):
     try:
