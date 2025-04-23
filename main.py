@@ -1,7 +1,12 @@
 import pyshark
 
-def gestion_paquetes():
-    pass
+def gestion_paquetes(captura_paquetes):
+    for paquetes in captura_paquetes:
+        for capas in paquetes:
+            contador_capas = 0
+            contador_capas += 1
+            print(f"Esta es la capa {contador_capas}:")
+            print(capas)
 
 def obtencion_paquetes(tarjeta_red):
     try:
@@ -9,10 +14,10 @@ def obtencion_paquetes(tarjeta_red):
             interface=tarjeta_red
         )
         captura_paquetes.sniff(packet_count=1)
-        for paquete in captura_paquetes:
-            print(paquete)
     except PermissionError:
         print("Revisa los permisos o usa sudo")
+    print("Vamos a gestionar los paqutes.")
+    gestion_paquetes(captura_paquetes)
 
 def main():
     interfaz_red = input("¿Cual es tu interfaz de red?")
