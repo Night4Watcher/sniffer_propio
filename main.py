@@ -5,7 +5,7 @@ def gestion_paquetes(captura_paquetes):
     contador_paquetes = 0
     for paquetes in captura_paquetes:
         contador_paquetes += 1
-        print(f"\n📦 Paquete {contador_paquetes}")
+        print(f"\n Paquete {contador_paquetes}")
         
         for i, capa in enumerate(paquetes.layers, start=1):
             print(f"🔹 Capa {i}: {capa.layer_name}")
