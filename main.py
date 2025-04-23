@@ -1,15 +1,19 @@
 import pyshark
 
 def gestion_paquetes(captura_paquetes):
+    variables_paquete = []
     contador_paquetes = 0
     for paquetes in captura_paquetes:
-        contador_paquetes = contador_paquetes + 1
-        print(f"Vamos a analizar el paquete {contador_paquetes}")
-        contador_capas = 0
-        for capas in paquetes:
-            contador_capas = contador_capas + 1
-            print(f"Esta es la capa {contador_capas}:")
-            print(capas)
+        contador_paquetes += 1
+        print(f"\n📦 Paquete {contador_paquetes}")
+        
+        for i, capa in enumerate(paquetes.layers, start=1):
+            print(f"🔹 Capa {i}: {capa.layer_name}")
+            
+            for campo in capa.field_names:
+                valor = getattr(capa, campo)
+                print(f"   - {campo}: {valor}")
+
 
 def obtencion_paquetes(tarjeta_red):
     try:
