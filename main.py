@@ -2,9 +2,12 @@ import pyshark
 
 def gestion_paquetes(captura_paquetes):
     for paquetes in captura_paquetes:
+        contador_paquetes = 0
+        contador_paquetes = contador_paquetes + 1
+        print(f"Vamos a analizar el paquete {contador_paquetes}")
         for capas in paquetes:
             contador_capas = 0
-            contador_capas =+ 1
+            contador_capas = contador_capas + 1
             print(f"Esta es la capa {contador_capas}:")
             print(capas)
 
