@@ -12,7 +12,7 @@ def gestion_paquetes(captura_paquetes):
             
             for campo in capa.field_names:
                 valor = getattr(capa, campo)
-                print(f"   - {campo}: {valor}")
+                print(f"          - {campo}: {valor}")
 
 
 def obtencion_paquetes(tarjeta_red):
@@ -20,11 +20,10 @@ def obtencion_paquetes(tarjeta_red):
         captura_paquetes = pyshark.LiveCapture(
             interface=tarjeta_red
         )
-        captura_paquetes.sniff(packet_count=1)
     except PermissionError:
         print("Revisa los permisos o usa sudo")
         exit(0)
-    print("Vamos a gestionar los paqutes.")
+    print("Vamos a gestionar los paquetes.")
     gestion_paquetes(captura_paquetes)
 
 def main():
