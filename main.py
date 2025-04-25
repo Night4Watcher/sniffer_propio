@@ -8,6 +8,8 @@ Requisitos:
 """
 
 import pyshark
+import pyshark.capture
+import pyshark.capture.live_capture
 
 def almacenamiento_paquetes(paquetes):
     """
@@ -67,6 +69,9 @@ def captura_paquetes():
         almacenamiento_paquetes(paquetes_capturados)
     except PermissionError:
         print("Revisa los permisos concedidos.")
+        exit(0)
+    except pyshark.capture.live_capture.UnknownInterfaceException:
+        print("La interfaz que has introducido, no es correcta")
         exit(0)
 
 # Este va a ser el bloque o la funcion 'main' del programa
