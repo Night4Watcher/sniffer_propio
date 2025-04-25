@@ -10,6 +10,8 @@ Requisitos:
 import pyshark
 import pyshark.capture
 import pyshark.capture.live_capture
+import pyshark.tshark
+import pyshark.tshark.tshark
 
 def almacenamiento_paquetes(paquetes):
     """
@@ -48,7 +50,7 @@ def almacenamiento_paquetes(paquetes):
         for capas in capas_disponibles:
             informacion_capa = {'nombre_capa': capas.layer_name}
             informacion_paquetes['informacion_capa'][capas.layer_name] = informacion_capa
-        print(informacion_paquetes[informacion_capa])
+        print(informacion_paquetes['informacion_capa'])
 
 def captura_paquetes():
     """
@@ -70,8 +72,15 @@ def captura_paquetes():
     except PermissionError:
         print("Revisa los permisos concedidos.")
         exit(0)
+    # error en caso de introducir incorrectamente una interfaz de red
     except pyshark.capture.live_capture.UnknownInterfaceException:
         print("La interfaz que has introducido, no es correcta")
+        interfaces_disponibles = pyshark.tshark.tshark.get_all_tshark_interfaces_names()
+        print("Estas son las interfaces que tienes disponibles: ")
+        num_interfaz = 0
+        for interfaces in interfaces_disponibles:
+            num_interfaz += 1
+            print(f'{num_interfaz}. {interfaces}')
         exit(0)
 
 # Este va a ser el bloque o la funcion 'main' del programa
