@@ -21,7 +21,9 @@ def almacenamiento_paquetes(paquetes):
     
     # esto es el diccionario anidado donde almacenar toda la informacion del paquete capturado
     informacion_paquetes = {
-        
+        'informacion_general':{
+            
+        }
     }
     # variables de contabilizacion
     paquetes_analizados = 0
