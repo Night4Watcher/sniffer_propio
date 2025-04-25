@@ -33,17 +33,9 @@ def almacenamiento_paquetes(paquetes):
         
         # Obtencion de la informacion general del paquete
         info_general = paquete.frame_info
-        for campo_informacion in info_general.field_names:
-            campo_informacion_general += 1
-            print(f'Campo de informacion num {campo_informacion_general}.')
-            print(getattr(info_general, campo_informacion))
-            # se introduce el valor obtenido en el diccionario anidado 'info_general'
-            informacion_paquetes['info_general'] = getattr(info_general, campo_informacion)
-            
-        
-        # obtencion de todas las capas que se encuentran disponibles en el paquete capturado
-        capas_disponibles_paquete = paquete.layers
-        # bucle con el que recorrer todas las capas disponibles en el paquete
+        for campos in info_general.field_names:
+            informacion_paquetes['informacion_general'][campos] = getattr(info_general, campos)
+        print(informacion_paquetes)
         
 
 def captura_paquetes():
@@ -61,11 +53,11 @@ def captura_paquetes():
         paquetes_capturados = pyshark.LiveCapture(
             interface=interfaz
         )
+        print("Vamos a almacenar la informacion de los paquetes.")
+        almacenamiento_paquetes(paquetes_capturados)
     except PermissionError:
         print("Revisa los permisos concedidos.")
         exit(0)
-    print("Vamos a almacenar la informacion de los paquetes.")
-    almacenamiento_paquetes(paquetes_capturados)
 
 # Este va a ser el bloque o la funcion 'main' del programa
 if __name__ == '__main__':
