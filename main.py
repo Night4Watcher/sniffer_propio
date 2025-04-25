@@ -45,10 +45,16 @@ def almacenamiento_paquetes(paquetes):
         for campos in info_general.field_names:
             informacion_paquetes['informacion_general'][campos] = getattr(info_general, campos)
         
-        # Obtención de las distintas capas del paquete
-        capas_disponibles = paquete.layers
-        for capa in capas_disponibles:
-            informacion_paquetes['informacion_capa'][capa.layer_name] = str(capa)
+        for capa in paquete.layers:
+            campos = {}
+            for attr in dir(capa):
+                if not attr.startswith('_') and not callable(getattr(capa, attr)):
+                    try:
+                        campos[attr] = getattr(capa, attr)
+                    except:
+                        pass
+        informacion_paquetes['informacion_capa'][capa.layer_name] = campos
+
             
         print(informacion_paquetes['informacion_capa'])
 
