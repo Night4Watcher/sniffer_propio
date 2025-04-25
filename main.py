@@ -45,7 +45,7 @@ def almacenamiento_paquetes(paquetes):
         capas_disponibles = paquete.layers
         for capas in capas_disponibles:
             informacion_capa = {'nombre_capa': capas.layer_name}
-            informacion_paquetes[informacion_capa][capas.layer_name] = informacion_capa
+            informacion_paquetes['informacion_capa'][capas.layer_name] = informacion_capa
         print(informacion_paquetes[informacion_capa])
 
 def captura_paquetes():
