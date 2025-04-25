@@ -48,8 +48,8 @@ def almacenamiento_paquetes(paquetes):
         # Obtencion de las distintas capas del paquete
         capas_disponibles = paquete.layers
         for capas in capas_disponibles:
-            informacion_capa = {'nombre_capa': capas.layer_name}
-            informacion_paquetes['informacion_capa'][capas.layer_name] = informacion_capa
+            informacion_paquetes['informacion_capa'][capas.layer_name] = getattr(capas_disponibles, capas)
+            
         print(informacion_paquetes['informacion_capa'])
 
 def captura_paquetes():
