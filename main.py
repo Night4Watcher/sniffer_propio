@@ -7,6 +7,7 @@ Requisitos:
 - 
 """
 
+import json
 from creacion_json import archivo_json
 import identificacion_paquetes
 import pyshark
@@ -14,6 +15,10 @@ import pyshark.capture
 import pyshark.capture.live_capture
 import pyshark.tshark
 import pyshark.tshark.tshark
+
+def añadir_contenido(informacion_paquete):
+    with open('archivo_json.json', 'a') as archivo:
+        json.dump(informacion_paquete)
 
 def almacenamiento_paquetes(paquetes):
     """
@@ -57,7 +62,14 @@ def almacenamiento_paquetes(paquetes):
                         pass
         informacion_paquetes['informacion_capa'][capa.layer_name] = campos
         
-        archivo_json(informacion_paquetes)
+        try:
+            with open('archivo_json.json', 'r') as archivo:
+                contenido_archivo = archivo.read()
+                archivo.close()
+            añadir_contenido(informacion_paquetes)
+        except FileNotFoundError:
+            with open('archivo_json.json', 'w') as archivo:
+                json.dump(informacion_paquetes, archivo, indent=4)
     
 
 def captura_paquetes():

@@ -1,6 +1,6 @@
 import json
 
-class archivo_json(object):
+class archivo_json:
     
     existe_archivo = False
     nombre_archivo = "archivo_json.json"
