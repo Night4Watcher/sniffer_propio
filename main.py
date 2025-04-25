@@ -7,6 +7,8 @@ Requisitos:
 - 
 """
 
+from creacion_json import archivo_json
+import identificacion_paquetes
 import pyshark
 import pyshark.capture
 import pyshark.capture.live_capture
@@ -23,20 +25,20 @@ def almacenamiento_paquetes(paquetes):
     Return: return_description
     """
     
-    # esto es el diccionario anidado donde almacenar toda la informacion del paquete capturado
-    informacion_paquetes = {
-        'informacion_general':{
-            
-        },
-        'informacion_capa':{
-            
-        }
-    }
     # variables de contabilizacion
     paquetes_analizados = 0
     campo_informacion_general = 0
     # bucle con el que recorrer todos los paquetes que vayan siendo capturados
     for paquete in paquetes:
+        # esto es el diccionario anidado donde almacenar toda la informacion del paquete capturado
+        informacion_paquetes = {
+            'informacion_general':{
+                
+            },
+            'informacion_capa':{
+                
+            }
+        }
         paquetes_analizados += 1
         print(f'Paquete analizado num {paquetes_analizados}')
         
@@ -54,9 +56,9 @@ def almacenamiento_paquetes(paquetes):
                     except:
                         pass
         informacion_paquetes['informacion_capa'][capa.layer_name] = campos
-
-            
-        print(informacion_paquetes['informacion_capa'])
+        
+        archivo_json(informacion_paquetes)
+    
 
 def captura_paquetes():
     """
