@@ -45,10 +45,10 @@ def almacenamiento_paquetes(paquetes):
         for campos in info_general.field_names:
             informacion_paquetes['informacion_general'][campos] = getattr(info_general, campos)
         
-        # Obtencion de las distintas capas del paquete
+        # Obtención de las distintas capas del paquete
         capas_disponibles = paquete.layers
-        for capas in capas_disponibles:
-            informacion_paquetes['informacion_capa'][capas.layer_name] = getattr(capas_disponibles, capas)
+        for capa in capas_disponibles:
+            informacion_paquetes['informacion_capa'][capa.layer_name] = str(capa)
             
         print(informacion_paquetes['informacion_capa'])
 
