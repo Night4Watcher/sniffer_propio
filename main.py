@@ -23,6 +23,9 @@ def almacenamiento_paquetes(paquetes):
     informacion_paquetes = {
         'informacion_general':{
             
+        },
+        'informacion_capa':{
+            
         }
     }
     # variables de contabilizacion
@@ -37,8 +40,13 @@ def almacenamiento_paquetes(paquetes):
         info_general = paquete.frame_info
         for campos in info_general.field_names:
             informacion_paquetes['informacion_general'][campos] = getattr(info_general, campos)
-        print(informacion_paquetes)
         
+        # Obtencion de las distintas capas del paquete
+        capas_disponibles = paquete.layers
+        for capas in capas_disponibles:
+            informacion_capa = {'nombre_capa': capas.layer_name}
+            informacion_paquetes[informacion_capa][capas.layer_name] = informacion_capa
+        print(informacion_paquetes[informacion_capa])
 
 def captura_paquetes():
     """
